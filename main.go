@@ -1,13 +1,14 @@
 package main
 
-import "github.com/gofiber/fiber/v2"
+import (
+	"akikflix/database"
+	"github.com/gofiber/fiber/v2"
+	"akikflix/route"
+)
 
 func main() {
+	database.InitDatabase()
 	app := fiber.New()
-
-	app.Get("/", func(c *fiber.Ctx) error {
-		return c.SendString("Welcome to the AkikFlix!")
-	})
-
+	route.InitRoutes(app)
 	app.Listen(":8000")
 }
