@@ -7,9 +7,9 @@ import (
 	jwtware "github.com/gofiber/jwt/v3"
 )
 
-func InitJwt(app fiber.Router){
+func InitJwt(app fiber.Router) {
 	secret := util.GetVariable("akikflix")
 	app.Use(jwtware.New(jwtware.Config{
-		SigningKey: []byte(secret),	
+		SigningKey: []byte(secret),
 	}))
 }
