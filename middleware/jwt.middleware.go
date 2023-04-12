@@ -8,7 +8,7 @@ import (
 )
 
 func InitJwt(app fiber.Router) {
-	secret := util.GetVariable("akikflix")
+	secret := util.GetVariable("jwtKey")
 	app.Use(jwtware.New(jwtware.Config{
 		SigningKey: []byte(secret),
 	}))
