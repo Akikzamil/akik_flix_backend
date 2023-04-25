@@ -40,10 +40,12 @@ func processVideo(filePath string) error {
 	extension := filepath.Ext(filePath)
 	name := filePath[0 : len(filePath)-len(extension)]
 	outputFilePath += name + ".m3u8"
-	chunkFilePath := "files/" + name + "%v%03d.ts"
+	// chunkFilePath := "files/" + name + "%v%03d.ts"
+
+	// ffmpeg -i big.mp4 -b:v 1M -g 60 -hls_time 2 -hls_list_size 0 -hls_segment_size 500000 output.m3u8
 
 	// command to execute ffmpeg
-	cmd := exec.Command("ffmpeg", "-i", inputFilePath, "-hls_time", "5", "-hls_list_size", "0", "-hls_segment_filename", chunkFilePath, outputFilePath)
+	cmd := exec.Command("ffmpeg", "-i", inputFilePath,"-b:v","1M","-g","60", "-hls_time", "2", "-hls_list_size", "0", "-hls_segment_size", "500000", outputFilePath)
 
 	// run the command and check for errors
 	if err := cmd.Run(); err != nil {
@@ -60,13 +62,13 @@ func GetVideo(c *fiber.Ctx) error {
 	}
 
 	videoPath := getOgVideoPath(video.Path)
-	return c.SendFile(videoPath)
+	return c.SendString(videoPath)
 }
 
 func getOgVideoPath(videoPath string) string {
 	extension := filepath.Ext(videoPath)
 	name := videoPath[0 : len(videoPath)-len(extension)]
 	name += ".m3u8"
-	name = "files/" + name
+	// name = "files/" + name
 	return name
 }

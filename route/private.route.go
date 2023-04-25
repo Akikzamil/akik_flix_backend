@@ -1,7 +1,7 @@
 package route
 
 import (
-	"akikflix/middleware"
+	// "akikflix/middleware"
 	"akikflix/service"
 
 	"github.com/gofiber/fiber/v2"
@@ -9,7 +9,7 @@ import (
 
 func initPrivateRoutes(app *fiber.App) {
 	restricted := app.Group("/api/v1/private")
-	middleware.InitJwt(restricted)
+	// middleware.InitJwt(restricted)
 	app.Get("/restricted", func(c *fiber.Ctx) error {
 		return c.SendString("Welcome to the AkikFlix!")
 	})
