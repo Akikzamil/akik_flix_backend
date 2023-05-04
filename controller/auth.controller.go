@@ -20,7 +20,7 @@ func Login(c *fiber.Ctx) error {
 	user2, isUserExist := database.CheckIfUserExists(user.Phone)
 
 	if !isUserExist {
-		return c.Status(5034).SendString("User does not exist with phone number")
+		return c.Status(503).SendString("User does not exist with phone number")
 	}
 
 	isPasswordMatched := util.CheckPasswordHash(user.Password, user2.Password)

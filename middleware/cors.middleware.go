@@ -6,8 +6,5 @@ import (
 )
 
 func initCors(app *fiber.App) {
-	app.Use(cors.New(cors.Config{
-		AllowOrigins: "*",
-		AllowHeaders: "*",
-	}))
+	app.Use(cors.New())
 }

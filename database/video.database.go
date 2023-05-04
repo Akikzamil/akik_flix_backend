@@ -20,3 +20,9 @@ func GetVideo(id string) (model.Video, bool) {
 
 	return video, true
 }
+
+func GetVideos() ([]model.Video) {
+	var videos []model.Video
+	DB.Find(&videos)
+	return videos
+}

@@ -72,3 +72,8 @@ func getOgVideoPath(videoPath string) string {
 	// name = "files/" + name
 	return name
 }
+
+func GetVideos(c *fiber.Ctx) error{
+	videos := database.GetVideos()
+	return c.JSON(videos)
+}
